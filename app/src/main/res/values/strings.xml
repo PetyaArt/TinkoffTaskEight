@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TinkoffTaskEight</string>
+    <string name="add_relation">add relation</string>
+    <string name="delete_item">delete item</string>
+    <string name="enter_parent">Enter parent</string>
+    <string name="enter_child">Enter child</string>
+</resources>
