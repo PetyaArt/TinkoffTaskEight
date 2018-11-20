@@ -15,13 +15,12 @@ import com.example.petya.tinkofftaskeight.db.noderelation.NodeRelation;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class MainActivity extends AppCompatActivity implements
+        ExampleDialog.ExampleDialogListener,
+        DeleteDialog.DeleteDialogListener {
 
     private RecyclerView mRecyclerView;
     private NodeAdapter mNodeAdapter;
-
-    private List<Node> mNodes;
-    private List<NodeRelation> mNodeRelations;
 
     NodeViewModel mNodeViewModel;
 
@@ -57,18 +56,15 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_add:
-                openDialog();
+                ExampleDialog exampleDialog = new ExampleDialog();
+                exampleDialog.show(getSupportFragmentManager(), "lol");
                 break;
             case R.id.item_delete:
-
+                DeleteDialog deleteDialog = new DeleteDialog();
+                deleteDialog.show(getSupportFragmentManager(), "sad");
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void openDialog() {
-        ExampleDialog exampleDialog = new ExampleDialog();
-        exampleDialog.show(getSupportFragmentManager(), "lol");
     }
 
     @Override
@@ -77,5 +73,10 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         nodeRelation.setParentId(Integer.parseInt(parent));
         nodeRelation.setChildId(Integer.parseInt(child));
         mNodeViewModel.saveNodeRelation(nodeRelation);
+    }
+
+    @Override
+    public void delete(String id) {
+        mNodeViewModel.deleteById(Integer.valueOf(id));
     }
 }

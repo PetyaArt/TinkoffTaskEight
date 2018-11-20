@@ -55,4 +55,8 @@ public class NodeViewModel extends AndroidViewModel {
     List<NodeRelation> getAllNodeRelation() {
         return mNodeRelationDao.getAllNodesRelation();
     }
+
+    void deleteById(int id) {
+        mExecutorService.execute(() -> mNodeDao.deleteById(id));
+    }
 }

@@ -8,7 +8,13 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.example.petya.tinkofftaskeight.db.node.Node;
 
-@Entity(tableName = "node_relation", foreignKeys = @ForeignKey(entity = Node.class, parentColumns = "id", childColumns = "parentId"))
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "node_relation",
+        foreignKeys = @ForeignKey(entity = Node.class,
+                parentColumns = "id",
+                childColumns = "parentId"))
+
 public class NodeRelation {
 
     @PrimaryKey(autoGenerate = true)

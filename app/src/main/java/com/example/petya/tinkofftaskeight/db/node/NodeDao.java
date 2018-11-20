@@ -22,6 +22,9 @@ public interface NodeDao {
     @Query("SELECT * FROM node WHERE id = :id")
     Node getById(int id);
 
+    @Query("DELETE FROM node WHERE id = :id")
+    void deleteById(int id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void save(Node node);
 
